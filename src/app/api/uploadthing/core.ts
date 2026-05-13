@@ -39,7 +39,7 @@ export const ourFileRouter = {
         isPublic: true,
         expiresAt: metadata.userId
           ? null
-          : new Date(Date.now() + 24 * 60 * 60 * 1000),
+          : new Date(Date.now() +  60 * 1000),
       });
 
       return { fileUrl: file.ufsUrl, shareId }; // return it too

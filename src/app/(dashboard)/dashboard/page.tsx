@@ -66,7 +66,7 @@ export default function DashboardPage() {
             totalSize: prev.totalSize - fileSize,
             totalDownloads: prev.totalDownloads,
           }
-        : prev
+        : prev,
     );
     setDeletingId(null);
   };
@@ -78,7 +78,7 @@ export default function DashboardPage() {
   };
 
   const filteredFiles = files.filter((f) =>
-    f.originalName.toLowerCase().includes(search.toLowerCase())
+    f.originalName.toLowerCase().includes(search.toLowerCase()),
   );
 
   if (loading) {
@@ -90,7 +90,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 ">
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-gray-900">My Files</h1>
@@ -101,15 +101,35 @@ export default function DashboardPage() {
 
       {/* Stats Cards */}
       {stats && (
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-3 ">
           {[
-            { label: "Total Files", value: stats.totalFiles, icon: "📁", color: "bg-blue-50 border-blue-100" },
-            { label: "Storage Used", value: formatBytes(stats.totalSize), icon: "💾", color: "bg-purple-50 border-purple-100" },
-            { label: "Downloads", value: stats.totalDownloads, icon: "⬇️", color: "bg-green-50 border-green-100" },
+            {
+              label: "Total Files",
+              value: stats.totalFiles,
+              icon: "📁",
+              color: "bg-blue-50 border-blue-100",
+            },
+            {
+              label: "Storage Used",
+              value: formatBytes(stats.totalSize),
+              icon: "💾",
+              color: "bg-purple-50 border-purple-100",
+            },
+            {
+              label: "Downloads",
+              value: stats.totalDownloads,
+              icon: "⬇️",
+              color: "bg-green-50 border-green-100",
+            },
           ].map((stat) => (
-            <div key={stat.label} className={`rounded-xl border p-3 sm:p-4 ${stat.color}`}>
+            <div
+              key={stat.label}
+              className={`rounded-xl  p-3 sm:p-4  dark:bg-gray-950  border border-gray-200 dark:border-gray-800 overflow-hidden ${stat.color}`}
+            >
               <p className="text-xl sm:text-2xl mb-1">{stat.icon}</p>
-              <p className="text-lg sm:text-2xl font-bold text-gray-900">{stat.value}</p>
+              <p className="text-lg sm:text-2xl font-bold ">
+                {stat.value}
+              </p>
               <p className="text-xs sm:text-sm text-gray-500">{stat.label}</p>
             </div>
           ))}
@@ -123,7 +143,7 @@ export default function DashboardPage() {
           placeholder="Search files..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="flex-1 border rounded-xl text-black px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+          className="flex-1 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-2.5 text-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <Link
           href="/upload"
@@ -135,13 +155,15 @@ export default function DashboardPage() {
 
       {/* Files List */}
       {filteredFiles.length === 0 ? (
-        <div className="text-center py-16 bg-white rounded-2xl border">
+        <div className="text-center py-16 bg-white dark:bg-gray-950 rounded-2xl border border-gray-200 dark:border-gray-800">
           <p className="text-5xl mb-4">{search ? "🔍" : "📭"}</p>
           <h3 className="text-lg font-semibold text-gray-700">
             {search ? "No files match your search" : "No files yet"}
           </h3>
           <p className="text-gray-400 text-sm mt-1">
-            {search ? "Try a different search term" : "Upload your first file to get started"}
+            {search
+              ? "Try a different search term"
+              : "Upload your first file to get started"}
           </p>
           {!search && (
             <Link
@@ -153,10 +175,9 @@ export default function DashboardPage() {
           )}
         </div>
       ) : (
-        <div className="bg-white rounded-2xl border overflow-hidden">
-
+        <div className="bg-white dark:bg-gray-950 rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden">
           {/* Desktop Header — hidden on mobile */}
-          <div className="hidden sm:grid grid-cols-12 gap-4 px-6 py-3 bg-gray-50 border-b text-xs font-semibold text-gray-500 uppercase tracking-wide">
+          <div className="hidden sm:grid grid-cols-12 gap-4 px-6 py-3 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
             <div className="col-span-5">File</div>
             <div className="col-span-2">Size</div>
             <div className="col-span-2">Downloads</div>
@@ -164,36 +185,46 @@ export default function DashboardPage() {
           </div>
 
           {filteredFiles.map((file) => (
-            <div key={file.id} className="border-b last:border-0 hover:bg-gray-50 transition">
-
+            <div
+              key={file.id}
+              className=" border-b border-gray-100 dark:border-gray-800 last:border-0 hover:bg-gray-50 dark:hover:bg-gray-900 transition"
+            >
               {/* Desktop Row */}
               <div className="hidden sm:grid grid-cols-12 gap-4 px-6 py-4 items-center">
                 <div className="col-span-5 flex items-center gap-3 min-w-0">
-                  <span className="text-2xl flex-shrink-0">{getFileIcon(file.mimeType)}</span>
+                  <span className="text-2xl flex-shrink-0">
+                    {getFileIcon(file.mimeType)}
+                  </span>
                   <div className="min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate">{file.originalName}</p>
+                    <p className=" text-sm font-medium dark:text-white truncate">
+                      {file.originalName}
+                    </p>
                     <p className="text-xs text-gray-400">
                       {new Date(file.createdAt).toLocaleDateString()}
                       {file.expiresAt && (
                         <span className="ml-2 text-orange-400">
-                          · Expires {new Date(file.expiresAt).toLocaleDateString()}
+                          · Expires{" "}
+                          {new Date(file.expiresAt).toLocaleDateString()}
                         </span>
                       )}
                     </p>
                   </div>
                 </div>
-                <div className="col-span-2 text-sm text-gray-500">{formatBytes(file.size)}</div>
-                <div className="col-span-2 text-sm text-gray-500">{file.downloadCount}</div>
+                <div className="col-span-2 text-sm text-gray-500">
+                  {formatBytes(file.size)}
+                </div>
+                <div className="col-span-2 text-sm text-gray-500">
+                  {file.downloadCount}
+                </div>
                 <div className="col-span-3 flex items-center gap-2">
                   <button
                     onClick={() => handleCopy(file.shareId)}
                     className="text-xs bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg hover:bg-blue-100 transition font-medium"
                   >
-                    {copied === file.shareId ? "Copied ✓" : "Copy Link"}
+                    {copied === file.shareId ? "Copied ✓" : "Copy"}
                   </button>
                   <Link
-                    href={`/f/${file.shareId}`}
-                    target="_blank"
+                    href={`/f/${file.shareId}`}         
                     className="text-xs bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg hover:bg-gray-200 transition font-medium"
                   >
                     View
@@ -212,9 +243,13 @@ export default function DashboardPage() {
               <div className="sm:hidden p-4 space-y-3">
                 {/* File Info */}
                 <div className="flex items-start gap-3">
-                  <span className="text-2xl flex-shrink-0">{getFileIcon(file.mimeType)}</span>
+                  <span className="text-2xl flex-shrink-0">
+                    {getFileIcon(file.mimeType)}
+                  </span>
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium text-gray-900 truncate">{file.originalName}</p>
+                    <p className="text-sm font-medium  truncate">
+                      {file.originalName}
+                    </p>
                     <div className="flex gap-3 mt-0.5 text-xs text-gray-400">
                       <span>{formatBytes(file.size)}</span>
                       <span>·</span>
@@ -224,7 +259,8 @@ export default function DashboardPage() {
                       {new Date(file.createdAt).toLocaleDateString()}
                       {file.expiresAt && (
                         <span className="ml-1 text-orange-400">
-                          · Expires {new Date(file.expiresAt).toLocaleDateString()}
+                          · Expires{" "}
+                          {new Date(file.expiresAt).toLocaleDateString()}
                         </span>
                       )}
                     </p>
@@ -237,11 +273,10 @@ export default function DashboardPage() {
                     onClick={() => handleCopy(file.shareId)}
                     className="flex-1 text-xs bg-blue-50 text-blue-600 px-3 py-2 rounded-lg hover:bg-blue-100 transition font-medium text-center"
                   >
-                    {copied === file.shareId ? "Copied ✓" : "📋 Copy Link"}
+                    {copied === file.shareId ? "Copied ✓" : "📋 Copy"}
                   </button>
                   <Link
                     href={`/f/${file.shareId}`}
-                    target="_blank"
                     className="flex-1 text-xs bg-gray-100 text-gray-600 px-3 py-2 rounded-lg hover:bg-gray-200 transition font-medium text-center"
                   >
                     👁 View
@@ -255,7 +290,6 @@ export default function DashboardPage() {
                   </button>
                 </div>
               </div>
-
             </div>
           ))}
         </div>
