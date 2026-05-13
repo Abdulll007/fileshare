@@ -5,10 +5,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: Promise<{ key: string }> },
+  { params }: { params: Promise<{ key: string }> }
 ) {
   const { key } = await params;
-
   const file = await db.query.files.findFirst({
     where: eq(files.utKey, key),
   });
@@ -17,5 +16,8 @@ export async function GET(
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  return NextResponse.json({ shareId: file.shareId });
+  return NextResponse.json({
+    shareId: file.shareId,
+    fileId: file.id,        // ← return fileId so we can set password
+  });
 }

@@ -13,7 +13,7 @@ export async function GET(req: NextRequest,{ params }:  { params: Promise<{ shar
   });
 
 
-  console.log(file)
+
 
   if (!file) { 
     return NextResponse.json({ error: "File not found" }, { status: 404 });
