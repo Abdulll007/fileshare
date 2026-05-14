@@ -97,20 +97,20 @@ export default function SharePage() {
   if (!file) return null;
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen  dark:bg-gray-900">
       <Navbar />
       <main className="flex-1 flex flex-col items-center justify-center p-4">
         <div className="w-full max-w-lg">
           {/* Brand */}
           <div className="text-center mb-6">
-            <Link href="/" className="text-xl font-bold text-gray-900">
+            <Link href="/" className="text-xl font-bold ">
               📁 FileShare
             </Link>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-sm border overflow-hidden">
+          <div className="rounded-2xl shadow-sm border overflow-hidden">
             {/* File Header */}
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 text-white">
+            <div className="bg-gradient-to-r from-blue-600  to-indigo-600 dark:from-gray-700 dark:to-gray-950 p-6 text-white">
               <div className="flex items-start gap-4">
                 <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
                   <span className="text-3xl">{getFileIcon(file.mimeType)}</span>
@@ -206,13 +206,10 @@ export default function SharePage() {
                   {/* Download Button */}
                   {fileUrl && (
                     <a
-                      href={fileUrl}
-                      download={file.name}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={`/api/files/download/${shareId}`}
                       className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition font-semibold"
                     >
-                      ⬇️ Download File
+                     ⬇️ Download 
                     </a>
                   )}
 

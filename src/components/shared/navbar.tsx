@@ -18,7 +18,7 @@ export function Navbar() {
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 font-bold text-xl text-gray-900 dark:text-white">
+        <Link href="/dashboard" className="flex items-center gap-2 font-bold text-xl text-gray-900 dark:text-white">
           <span className="text-2xl">📁</span>
           <span>FileShare</span>
         </Link>

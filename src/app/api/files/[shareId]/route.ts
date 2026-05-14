@@ -9,10 +9,11 @@ const utapi = new UTApi();
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { shareId: string } }
+  { params }: { params: Promise<{ shareId: string }> }
 ) {
+  const { shareId } = await params;
   const file = await db.query.files.findFirst({
-    where: eq(files.shareId, params.shareId),
+    where: eq(files.shareId, shareId),
   });
 
   if (!file) {
@@ -45,12 +46,14 @@ export async function GET(
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { shareId: string } }
+  { params }: { params: Promise<{ shareId: string }> }
 ) {
   const { password } = await req.json();
 
+  const { shareId } = await params;
+
   const file = await db.query.files.findFirst({
-    where: eq(files.shareId, params.shareId),
+    where: eq(files.shareId, shareId),
   });
 
   if (!file) {
@@ -77,7 +80,7 @@ export async function POST(
   await db
     .update(files)
     .set({ downloadCount: (file.downloadCount ?? 0) + 1 })
-    .where(eq(files.shareId, params.shareId));
+    .where(eq(files.shareId, shareId));
 
   return NextResponse.json({ url: file.utUrl });
 }

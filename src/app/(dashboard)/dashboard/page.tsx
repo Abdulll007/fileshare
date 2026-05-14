@@ -127,9 +127,7 @@ export default function DashboardPage() {
               className={`rounded-xl  p-3 sm:p-4  dark:bg-gray-950  border border-gray-200 dark:border-gray-800 overflow-hidden ${stat.color}`}
             >
               <p className="text-xl sm:text-2xl mb-1">{stat.icon}</p>
-              <p className="text-lg sm:text-2xl font-bold ">
-                {stat.value}
-              </p>
+              <p className="text-lg sm:text-2xl font-bold ">{stat.value}</p>
               <p className="text-xs sm:text-sm text-gray-500">{stat.label}</p>
             </div>
           ))}
@@ -177,7 +175,7 @@ export default function DashboardPage() {
       ) : (
         <div className="bg-white dark:bg-gray-950 rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden">
           {/* Desktop Header — hidden on mobile */}
-          <div className="hidden sm:grid grid-cols-12 gap-4 px-6 py-3 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+          <div className="hidden sm:grid grid-cols-12 gap-4 px-6 py-3 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide ">
             <div className="col-span-5">File</div>
             <div className="col-span-2">Size</div>
             <div className="col-span-2">Downloads</div>
@@ -213,7 +211,7 @@ export default function DashboardPage() {
                 <div className="col-span-2 text-sm text-gray-500">
                   {formatBytes(file.size)}
                 </div>
-                <div className="col-span-2 text-sm text-gray-500">
+                <div className="col-span-1 text-sm text-gray-500">
                   {file.downloadCount}
                 </div>
                 <div className="col-span-3 flex items-center gap-2">
@@ -224,7 +222,7 @@ export default function DashboardPage() {
                     {copied === file.shareId ? "Copied ✓" : "Copy"}
                   </button>
                   <Link
-                    href={`/f/${file.shareId}`}         
+                    href={`/f/${file.shareId}`}
                     className="text-xs bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg hover:bg-gray-200 transition font-medium"
                   >
                     View

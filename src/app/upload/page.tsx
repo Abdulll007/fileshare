@@ -106,7 +106,7 @@ export default function UploadPage() {
             </div>
 
             {/* Uploaded Files */}
-            <div className="bg-white rounded-2xl shadow-sm border overflow-hidden mb-4">
+            <div className="rounded-2xl shadow-sm border overflow-hidden mb-4">
               {uploadedFiles.map((file, i) => (
                 <div key={i} className="p-4 border-b last:border-0">
                   <div className="flex items-center gap-3 mb-3">
@@ -114,7 +114,7 @@ export default function UploadPage() {
                       {getFileIcon(file.mimeType)}
                     </span>
                     <div className="min-w-0 flex-1">
-                      <p className="text-sm font-medium text-gray-900 truncate">
+                      <p className="text-sm font-medium  truncate">
                         {file.name}
                       </p>
                       <p className="text-xs text-gray-400">
@@ -122,8 +122,8 @@ export default function UploadPage() {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 bg-gray-50 rounded-lg px-3 py-2 border">
-                    <p className="text-xs text-gray-500 truncate flex-1">
+                  <div className="flex items-center gap-2  rounded-lg px-3 py-2 border">
+                    <p className="text-xs  truncate flex-1">
                       {file.shareUrl}
                     </p>
                     <button
@@ -145,7 +145,7 @@ export default function UploadPage() {
                   setPassword("");
                   setEnablePassword(false);
                 }}
-                className="flex-1 border border-gray-200 text-gray-700 py-3 rounded-xl hover:bg-gray-50 transition font-medium text-sm"
+                className="flex-1 border border-gray-200  py-3 rounded-xl hover:bg-gray-50 transition font-medium text-sm dark:hover:bg-gray-950"
               >
                 Upload More
               </button>
@@ -209,11 +209,11 @@ export default function UploadPage() {
                   {selectedFiles.map((file, i) => (
                     <div
                       key={i}
-                      className="flex items-center gap-3 bg-gray-50 rounded-lg px-3 py-2.5 border"
+                      className="flex items-center gap-3  rounded-lg px-3 py-2.5 border"
                     >
                       <span className="text-lg">{getFileIcon(file.type)}</span>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm text-gray-700 truncate">
+                        <p className="text-sm  truncate">
                           {file.name}
                         </p>
                         <p className="text-xs text-gray-400">
